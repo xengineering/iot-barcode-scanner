@@ -9,7 +9,7 @@ INSTALL_DATA=$(INSTALL) -m 644
 bindir=$(DESTDIR)$(PREFIX)/bin
 sharedir=$(DESTDIR)$(PREFIX)/share
 confdir=$(DESTDIR)/etc/xengineering.eu/$(PKGNAME)
-libdir=$(DESTDIR)$(PREFIX)/lib/python3.8/site-packages/$(PKGNAME)
+libdir=$(DESTDIR)$(PREFIX)/lib/python3/dist-packages/$(PKGNAME)
 
 
 .PHONY: install uninstall
