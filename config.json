@@ -2,6 +2,10 @@
     "mqtt":{
         "broker":"127.0.0.1",
         "port":1883,
-        "topic":"eu/xengineering/iot-barcode-scanner"
+        "topic":"xengineering.eu/iot-barcode-scanner"
+    },
+    "scanner":{
+        "evdev_path":"/dev/input/event4",
+        "fifo_path":"/tmp/xengineering.eu/iot-barcode-scanner/scanner_fifo"
     }
 }

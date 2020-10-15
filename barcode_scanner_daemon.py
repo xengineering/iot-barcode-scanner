@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+
+
+"""Executable to read the Key Events from the Barcode Scanner (root Priviledges necessary)"""
+
+
+import evdev
+import os
+
+import iot_barcode_scanner.config as config
+
+
+def main():
+
+    try:
+        # read config
+        cfg = config.get_config()
+        fifo_path = cfg["scanner"]["fifo_path"]
+        event_device_path = cfg["scanner"]["evdev_path"]
+
+        # prepare fifo
+        os.makedirs(os.path.dirname(fifo_path), exist_ok=True)
+        os.mkfifo(fifo_path)
+
+        barcode_scanner = evdev.InputDevice(event_device_path)
+        with barcode_scanner.grab_context():
+            for event in barcode_scanner.read_loop():
+                if event.type == evdev.ecodes.EV_KEY:
+                    eventdata = evdev.categorize(event)
+                    if eventdata.keystate:
+                        with open(fifo_path, "a") as fifo:
+                            fifo.append(eventdata.keycode)
+
+    except KeyboardInterrupt:
+        pass
+
+    finally:
+        os.remove(fifo_path)
+
+
+if __name__ == "__main__":
+    main()
