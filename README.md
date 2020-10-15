@@ -7,10 +7,17 @@ A service that makes barcode scanners available on the network for IoT use.
 
 ## Usage
 
-1. Adapt config.json file if needed.
-2. Run ```sudo python barcode_scanner_daemon.py```
-3. Run ```python barcode_transmit_daemon.py```
-4. Listen to MQTT output (e.g. with ```mosquitto_sub -h localhost -t "xengineering.eu/iot-barcode-scanner"```)
+1. Installation
+    ```
+        sudo pip3 install paho-mqtt evdev
+        git clone https://github.com/xengineering/iot-barcode-scanner.git
+        cd iot-barcode-scanner
+        sudo make install
+    ```
+2. Configure /etc/xengineering.eu/iot_barcode_scanner/config.json
+3. Run ```sudo eu.xengineering.iot_barcode_scanner.scanner```
+4. Run ```eu.xengineering.iot_barcode_scanner.transmitter```
+5. Listen to MQTT output (e.g. with ```mosquitto_sub -h localhost -t "xengineering.eu/iot-barcode-scanner"```)
 
 
 ## Milestones
@@ -19,8 +26,8 @@ A service that makes barcode scanners available on the network for IoT use.
 - [x] Use config file
 - [x] Disable scanner as regular input source and bind it only to the service
 - [x] Split into two executables to reduce root-priviledged code
+- [x] Write Makefile for easy installation
 - [ ] Implement systemd services
-- [ ] Write Makefile for easy installation
 - [ ] Implement auto discovery of barcode scanners
 - [ ] Package it for Arch Linux
 
