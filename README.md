@@ -15,8 +15,8 @@ A service that makes barcode scanners available on the network for IoT use.
         sudo make install
     ```
 2. Configure ```/etc/xengineering.eu/iot_barcode_scanner/config.json```
-3. Run ```sudo eu.xengineering.iot_barcode_scanner.scanner```
-4. Run ```eu.xengineering.iot_barcode_scanner.transmitter```
+3. Run ```sudo eu.xengineering.iot_barcode_scanner.scanner &```
+4. Run ```eu.xengineering.iot_barcode_scanner.transmitter &```
 5. Listen to MQTT output (e.g. with ```mosquitto_sub -h localhost -t "xengineering.eu/iot-barcode-scanner"```)
 
 
