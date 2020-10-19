@@ -27,7 +27,6 @@ def main():
             with open(fifo_path, "r") as fifo:
                 keycode = fifo.read()
             character = KEYMAP[keycode]
-            barcode += character
             if character is "\n":
                 mqtt_service.client.publish(
                     topic,
@@ -36,6 +35,8 @@ def main():
                     retain=False
                 )
                 barcode = ""
+            else:
+                barcode += character
 
     except KeyboardInterrupt:
         pass
