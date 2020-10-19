@@ -28,8 +28,9 @@ def main():
                 if event.type == evdev.ecodes.EV_KEY:
                     eventdata = evdev.categorize(event)
                     if eventdata.keystate:
-                        with open(fifo_path, "a") as fifo:
-                            fifo.append(eventdata.keycode)
+                        with open(fifo_path, "w") as fifo:
+                            fifo.write(eventdata.keycode)
+                            fifo.flush()
 
     except KeyboardInterrupt:
         pass
