@@ -4,6 +4,7 @@
 """Executable to transmit the Barcode Data to MQTT without root Priviledges"""
 
 
+from iot_barcode_scanner.static import KEYMAP
 import iot_barcode_scanner.config as config
 from iot_barcode_scanner.mqtt import MqttService
 
@@ -20,15 +21,21 @@ def main():
         mqtt_service = MqttService(cfg)
         mqtt_service.run()
 
+        barcode = ""
+
         while True:
             with open(fifo_path, "r") as fifo:
-                text = fifo.read()
-            mqtt_service.client.publish(
-                topic,
-                payload=text,
-                qos=0,
-                retain=False
-            )
+                keycode = fifo.read()
+            character = KEYMAP[keycode]
+            barcode += character
+            if character is "\n":
+                mqtt_service.client.publish(
+                    topic,
+                    payload=barcode,
+                    qos=0,
+                    retain=False
+                )
+                barcode = ""
 
     except KeyboardInterrupt:
         pass
