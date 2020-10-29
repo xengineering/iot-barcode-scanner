@@ -1,0 +1,12 @@
+
+[Unit]
+Description=A Daemon to read Barcodes from a specified Barcode Reader
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/iot_barcode_device_handler
+User=root
+Group=root
+
+[Install]
+WantedBy=default.target

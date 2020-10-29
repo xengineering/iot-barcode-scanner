@@ -23,5 +23,4 @@ class MqttService():
         self.client.loop_start()
 
     def on_connect(self, client, userdata, flags, rc):
-        print("Connected with result code " + str(rc))
         client.subscribe(self.config["mqtt"]["topic"])

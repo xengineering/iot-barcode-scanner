@@ -3,7 +3,7 @@
 """Module to store static Data for the whole Package"""
 
 
-CONFIG_PATH = "/etc/xengineering.eu/iot_barcode_scanner/config.json"
+CONFIG_PATH = "/etc/iot_barcode/config.json"
 
 KEYMAP = {
     "KEY_0": "0",

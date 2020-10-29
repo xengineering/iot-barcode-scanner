@@ -5,7 +5,8 @@
 
 import sys
 import json
-from iot_barcode_scanner.static import CONFIG_PATH
+
+from iot_barcode.static import CONFIG_PATH
 
 
 def get_config():

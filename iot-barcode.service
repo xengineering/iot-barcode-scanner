@@ -1,0 +1,14 @@
+
+[Unit]
+Description=A Daemon to transmit Barcodes to an MQTT Broker
+Requires=iot-barcode-device-handler.service
+After=iot-barcode-device-handler.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/iot_barcode_daemon
+User=iotbarcode
+Group=iotbarcode
+
+[Install]
+WantedBy=default.target

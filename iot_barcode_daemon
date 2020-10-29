@@ -4,9 +4,9 @@
 """Executable to transmit the Barcode Data to MQTT without root Priviledges"""
 
 
-from iot_barcode_scanner.static import KEYMAP
-import iot_barcode_scanner.config as config
-from iot_barcode_scanner.mqtt import MqttService
+from iot_barcode.static import KEYMAP
+import iot_barcode.config as config
+from iot_barcode.mqtt import MqttService
 
 
 def main():
