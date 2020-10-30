@@ -16,8 +16,7 @@ A service that makes barcode scanners available on the network for IoT use.
         sudo useradd -Urs /usr/bin/nologin iotbarcode
     ```
 2. Configure ```/etc/iot_barcode/config.json```
-3. Run ```sudo systemctl enable --now iot-barcode-device-handler```
-4. Run ```sudo systemctl enable --now iot-barcode```
+3. Run ```sudo systemctl enable --now iot-barcode.target```
 5. Listen to MQTT output (e.g. with ```mosquitto_sub -h localhost -t "xengineering.eu/iot-barcode"```)
 
 

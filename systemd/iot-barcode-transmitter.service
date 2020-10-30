@@ -6,9 +6,9 @@ After=iot-barcode-device-handler.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/iot_barcode_daemon
+ExecStart=/usr/bin/iot_barcode_transmitter
 User=iotbarcode
 Group=iotbarcode
 
 [Install]
-WantedBy=default.target
+WantedBy=iot-barcode.target

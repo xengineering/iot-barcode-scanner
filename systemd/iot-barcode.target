@@ -1,0 +1,10 @@
+
+[Unit]
+Description=Start this Target to start all IoT Barcode Services
+Requires=multi-user.target
+After=multi-user.target
+AllowIsolate=yes
+
+[Install]
+WantedBy=multi-user.target
+

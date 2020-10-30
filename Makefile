@@ -21,7 +21,7 @@ install:
 	# install executables
 	mkdir -p $(bindir)
 	$(INSTALL_PROGRAM) iot_barcode_device_handler $(bindir)/
-	$(INSTALL_PROGRAM) iot_barcode_daemon $(bindir)/
+	$(INSTALL_PROGRAM) iot_barcode_transmitter $(bindir)/
 
 	# install library / package
 	mkdir -p $(libdir)/
@@ -35,8 +35,12 @@ install:
 	$(INSTALL_DATA) config.json $(confdir)/config.json
 
 	# install systemd unit files
-	$(INSTALL_DATA) iot-barcode.service $(systemddir)/
-	$(INSTALL_DATA) iot-barcode-device-handler.service $(systemddir)/
+	$(INSTALL_DATA) systemd/iot-barcode-transmitter.service $(systemddir)/
+	systemctl enable iot-barcode-transmitter.service
+	$(INSTALL_DATA) systemd/iot-barcode-device-handler.service $(systemddir)/
+	systemctl enable iot-barcode-device-handler.service
+	$(INSTALL_DATA) systemd/iot-barcode.target $(systemddir)/
+	systemctl daemon-reload
 
 	# install license
 	mkdir -p $(sharedir)/licenses/
@@ -46,11 +50,15 @@ install:
 uninstall:
 
 	rm -f $(bindir)/iot_barcode_device_handler
-	rm -f $(bindir)/iot_barcode_daemon
+	rm -f $(bindir)/iot_barcode_transmitter
 	rm -f $(libdir)/__init__.py
 	rm -f $(libdir)/config.py
 	rm -f $(libdir)/mqtt.py
 	rm -f $(libdir)/static.py
-	rm -f $(systemddir)/iot-barcode.service
+	systemctl disable iot-barcode-transmitter.service
+	rm -f $(systemddir)/iot-barcode-transmitter.service
+	systemctl disable iot-barcode-device-handler.service
 	rm -f $(systemddir)/iot-barcode-device-handler.service
+	systemctl disable iot-barcode.target
+	rm -f $(systemddir)/iot-barcode.target
 	rm -f $(sharedir)/licenses/$(PKGNAME)
