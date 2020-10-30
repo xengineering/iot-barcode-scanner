@@ -30,6 +30,7 @@ def main():
                     if eventdata.keystate:
                         with open(fifo_path, "w") as fifo:
                             fifo.write(eventdata.keycode)
+                            fifo.write("\n")
                             fifo.flush()
 
     except KeyboardInterrupt:

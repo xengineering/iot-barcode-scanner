@@ -25,8 +25,12 @@ def main():
 
         while True:
             with open(fifo_path, "r") as fifo:
-                keycode = fifo.read()
-            character = KEYMAP[keycode]
+                keycode = fifo.readline()
+            if keycode in KEYMAP:
+                character = KEYMAP[keycode]
+            else:
+                print("Keycode not recognized")
+                character = ""
             if character is "\n":
                 mqtt_service.client.publish(
                     topic,
