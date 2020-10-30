@@ -2,7 +2,8 @@
 [Unit]
 Description=A Daemon to transmit Barcodes to an MQTT Broker
 Requires=iot-barcode-device-handler.service
-After=iot-barcode-device-handler.service
+After=iot-barcode-device-handler.service network-online.target
+Wants=network-online.target
 
 [Service]
 Type=simple
